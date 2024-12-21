@@ -55,6 +55,19 @@ class BinaryTree{
                 }
             }
         }
+        public static int sumOfNodes(Node root){
+            if(root==null) return 0;
+            int leftSum = sumOfNodes(root.left);
+            int rightSum = sumOfNodes(root.right);
+            return leftSum+rightSum+root.data;
+        }
+
+        public static int heightOfBinaryTree(Node root){
+            if(root==null) return 0;
+            int leftHeight = heightOfBinaryTree(root.left);
+            int rightHeight = heightOfBinaryTree(root.right);
+            return Math.max(leftHeight,rightHeight)+1;
+        }
     }
      
         public static void main(String[] args) {
@@ -64,6 +77,10 @@ class BinaryTree{
         System.out.println(root.data+"  "+"root.left.data="+root.left.data+"root.right.data="+root.right.data);
         newTree.preordrerTraversal(root);
         newTree.levelorderTrsversal(root);
+        int sum = newTree.sumOfNodes(root);
+        System.out.println(sum);
+        int height = newTree.heightOfBinaryTree(root);
+        System.out.println(height);
 
     }
 }

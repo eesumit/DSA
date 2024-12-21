@@ -68,6 +68,14 @@ class BinaryTree{
             int rightHeight = heightOfBinaryTree(root.right);
             return Math.max(leftHeight,rightHeight)+1;
         }
+
+        public static int diameterOfTree(Node root){
+            if(root==null) return 0;
+            int leftDiameter = diameterOfTree(root.left);
+            int rightDiameter = diameterOfTree(root.right);
+            int height = heightOfBinaryTree(root);
+            return Math.max(Math.max(leftDiameter,rightDiameter),height);
+        }
     }
      
         public static void main(String[] args) {
@@ -81,6 +89,8 @@ class BinaryTree{
         System.out.println(sum);
         int height = newTree.heightOfBinaryTree(root);
         System.out.println(height);
+        int diameter = newTree.diameterOfTree(root);
+        System.out.println(diameter);
 
     }
 }

@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 class BinarySearchTree {
     static class Node {
         int data;
@@ -54,6 +57,26 @@ class BinarySearchTree {
         while(root.left!=null) root=root.left;
         return root;
     }
+    private static void printPath(ArrayList<Integer> path){
+        System.out.println();
+        for(int i:path) 
+        if(i==path.get(path.size()-1)) System.out.print(i);
+        else System.out.print(i+"->");
+    }
+    // printing every path in the binary search tree.
+    private static void printAllPaths(Node root,ArrayList<Integer>path){
+        if(root==null) return;
+        path.add(root.data);
+        if(root.left==null && root.right==null){
+            printPath(path);
+        }
+        else{
+        printAllPaths(root.left, path);
+        printAllPaths(root.right, path);
+        }
+        path.remove(path.size()-1);
+        
+    }
     public static void main(String[] args) {
         int[] arr = {8,5,3,1,4,6,10,11,14};
         Node root = null;
@@ -66,10 +89,10 @@ class BinarySearchTree {
         System.out.println(kyaMila);
         kyaMila = searchInBinaryTree(root, 1);
         System.out.println(kyaMila);
-        root = deleteNode(root, 4);
-        root = deleteNode(root, 10);
-        root = deleteNode(root, 5);
+        // root = deleteNode(root, 4);
+        // root = deleteNode(root, 10);
+        // root = deleteNode(root, 5);
         inorderPrint(root);
-
+        printAllPaths(root, new ArrayList<>());
     }
 }
